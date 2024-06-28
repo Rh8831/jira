@@ -5,13 +5,10 @@ services:
     container_name: jira-srv
     environment:
       - TZ=Asia/Shanghai
-#      - JVM_MINIMUM_MEMORY=1g
-#      - JVM_MAXIMUM_MEMORY=12g
-#      - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=8g'
     depends_on:
       - mysql
     ports:
-      - "8080:8080"
+      - "443:443"
     volumes:
       - home_data:/var/jira
     restart: always
@@ -28,8 +25,6 @@ services:
       - MYSQL_USER=jira
       - MYSQL_PASSWORD=123123
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
-#    ports:
-#      - "13306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     restart: always
